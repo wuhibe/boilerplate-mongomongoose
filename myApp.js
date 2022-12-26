@@ -11,11 +11,25 @@ let personSchema = new mongoose.Schema({
 let Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let p = new Person({
+    name: 'Wuhibe Tamire',
+    age: 23,
+    favoriteFoods: ['rice', 'pizza', 'chicken']
+  });
+  p.save((err, data) => {
+    if (data) done(null, data);
+    else done(null, err);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  arrayOfPeople.forEach(element => {
+    let p = new Person(element);
+    p.save((err, data) => {
+      if (data) done(null, data);
+      else done(null, err);
+    });
+  });
 };
 
 const findPeopleByName = (personName, done) => {
@@ -59,7 +73,7 @@ const queryChain = (done) => {
 };
 
 /** **Well Done !!**
-/* You completed these challenges, let's go celebrate !
+ * You completed these challenges, let's go celebrate !
  */
 
 //----- **DO NOT EDIT BELOW THIS LINE** ----------------------------------
