@@ -33,15 +33,21 @@ const createManyPeople = (arrayOfPeople, done) => {
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({ name: personName })
+    .then(p => { done(null, p); })
+    .catch(err => { done(null, err); });
 };
 
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  Person.findOne({ favoriteFoods: food })
+    .then(p => { done(null, p); })
+    .catch(err => { done(null, err); });
 };
 
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findOne({ _id: personId })
+    .then(p => { done(null, p); })
+    .catch(err => { done(null, err); });
 };
 
 const findEditThenSave = (personId, done) => {
